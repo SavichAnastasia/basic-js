@@ -8,13 +8,11 @@ module.exports = function repeater(str, options) {
         additionArr.push(options.addition)
     } 
     let additionStr = additionArr.join(options.additionSeparator || '|');
-console.log(additionArr, additionStr);
     let resultArr = [];
     for (let i  = 0; i < options.repeatTimes; i++) {
         resultArr.push(str + additionStr)
     } 
     let result = resultArr.join(options.separator || '+');
-    console.log(resultArr, result);
     return result;
 };
   
