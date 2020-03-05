@@ -26,7 +26,7 @@ class VigenereCipheringMachine {
         if (this.modification) {
             return result;
         } else {
-            return result.split().reverse().join();
+            return result.split('').reverse().join('');
         }
     }
 
@@ -34,28 +34,25 @@ class VigenereCipheringMachine {
         if(!str || !keyWord) throw new Error();
         let key = keyWord.toUpperCase();
         let result = '';
-
-        for (let i = 0, j = 0; i < str.length; i++, j++) {
+        for (let i = 0, j = 0; i < str.length; i++, j++) {          
             if (!/[A-Z]/.test(str[i])) {
                 result += str[i];
                 j--;
             } else {
                 if (!keyWord[j]) j = 0;
                 let n;
-                if (this.modification) {
                     n = str.codePointAt(i) - key.codePointAt(j) + 65; 
                     if (n < 65) n = n + 26;
-                } else {
-                    n = 90 - (str.codePointAt(i) + key.codePointAt(j) - 65 - 65); 
-                    if (n < 65) n = n + 26;
-                    if (n > 90) n = n - 26;
-                }
                 result += String.fromCodePoint(n);    
             }         
         }
 
-        return result;
-    }
+        if (this.modification) {
+            return result;
+        } else {
+            return result.split('').reverse().join('');
+        }
+    } 
 }
 
 module.exports = VigenereCipheringMachine;
